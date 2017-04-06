@@ -20,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/haobingwang/customize-bootstrap-sass/issues"
   },
-  "homepage": "https://github.com/haobingwang/customize-bootstrap-sass#readme"
+  "homepage": "https://github.com/haobingwang/customize-bootstrap-sass#readme",
+  "devDependencies": {
+    "bootstrap-sass": "^3.3.7",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0"
+  }
 }
