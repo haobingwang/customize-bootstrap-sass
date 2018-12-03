@@ -1,16 +1,37 @@
 
-- 参考 [https://github.com/andydkcat/customize-bootstrap-sass](https://github.com/andydkcat/customize-bootstrap-sass)  的项目
-- 文档 [http://www.codevoila.com/post/32/customize-bootstrap-using-bootstrap-sass-and-gulp](http://www.codevoila.com/post/32/customize-bootstrap-using-bootstrap-sass-and-gulp)
 
-## 中国境内操作
+
+## 1. 中国境内操作
+
+设置 node-sass 和 npm 镜像：
 
 ```shell
-$ npm install cnpm -g --registry=https://registry.npm.taobao.org
-
-$ cnpm install gulp -g --save-dev
-$ cnpm install bootstrap-sass --save-dev
-$ cnpm install gulp-sass --save-dev
+$ npm set sass_binary_site=https://npm.taobao.org/mirrors/node-sass/
+$ npm install nrm -g --registry=https://registry.npm.taobao.org
+$ nrm use taobao
 ```
+
+安装项目依赖：
+
+```shell
+$ npm install gulp -g --save-dev
+$ npm install bootstrap-sass gulp-sass --save-dev
+```
+
+## 2. 定制化
+
+### 2.1 Build Only The Components You Need
+
+```shell
+cp node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss ./src/scss/_bootstrap-custom.scss
+```
+
+### 2.2 Override Variables
+
+## 文档
+
+- [https://github.com/andydkcat/customize-bootstrap-sass](https://github.com/andydkcat/customize-bootstrap-sass)  的项目
+- [http://www.codevoila.com/post/32/customize-bootstrap-using-bootstrap-sass-and-gulp](http://www.codevoila.com/post/32/customize-bootstrap-using-bootstrap-sass-and-gulp)
 
 ## 本地化问题
 
