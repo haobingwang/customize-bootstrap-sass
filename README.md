@@ -26,7 +26,26 @@ $ npm install bootstrap-sass gulp-sass --save-dev
 cp node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss ./src/scss/_bootstrap-custom.scss
 ```
 
+```css
+/* main.scss */
+@import "bootstrap-custom";
+@import "bootstrap/theme";
+```
+
 ### 2.2 Override Variables
+
+```shell
+cp node_modules/bootstrap-sass/assets/stylesheets/bootstrap/_variables.scss ./src/scss/_override-variables.scss
+```
+
+Then import it in `main.scss` before importing bootstrap:
+
+```css
+/* main.scss */
+@import "override-variables";
+@import "bootstrap-custom";
+@import "bootstrap/theme";
+```
 
 ## 文档
 

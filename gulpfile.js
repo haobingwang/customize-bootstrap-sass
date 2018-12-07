@@ -1,33 +1,34 @@
-var 
-    gulp = require('gulp'),
-    sass = require('gulp-sass');
+var gulp = require('gulp');
+var sass = require('gulp-sass');
+var pug = require('gulp-pug');
 
 // source and distribution folder
-var
-    source = 'src/',
-    dest = 'dist/';
-    
+var source = 'src/';
+var dest = 'dist/';
+
 // Bootstrap scss source
-var bootstrapSass = {
-        in: './node_modules/bootstrap-sass/'
-    };
+var bootstrapSass = { 
+    in: './node_modules/bootstrap-sass/'
+};
 
 // Bootstrap fonts source
-var fonts = {
-        in: [source + 'fonts/*.*', bootstrapSass.in + 'assets/fonts/**/*'],
-        out: dest + 'fonts/'
-    };
+var fonts = { 
+    in: [
+        source + 'fonts/*.*', 
+        bootstrapSass.in + 'assets/fonts/**/*'
+    ],
+    out: dest + 'fonts/'
+};
 
 // Our scss source folder: .scss files
-var scss = {
-    in: source + 'scss/main.scss',
+var scss = { in: source + 'scss/main.scss',
     out: dest + 'css/',
     watch: source + 'scss/**/*',
     sassOpts: {
         outputStyle: 'nested',
         precison: 3,
         errLogToConsole: true,
-        includePaths: [bootstrapSass.in + 'assets/stylesheets']// this will tell gulp-sass where to import scss files.
+        includePaths: [bootstrapSass.in + 'assets/stylesheets'] // this will tell gulp-sass where to import scss files.
     }
 };
 
@@ -46,7 +47,13 @@ gulp.task('sass', ['fonts'], function () {
         .pipe(gulp.dest(scss.out));
 });
 
+gulp.task('html', function () {
+    return gulp.src('src/templates/*.pug')
+        .pipe(pug())
+        .pipe(gulp.dest('dist'))
+});
+
 // default task
-gulp.task('default', ['sass'], function () {
-     gulp.watch(scss.watch, ['sass']);
+gulp.task('default', ['html', 'sass'], function () {
+    gulp.watch(scss.watch, ['sass']);
 });
