@@ -1,7 +1,15 @@
 var gulp = require('gulp');
+
+// CSS 相关依赖
 var sass = require('gulp-sass');
 var minifyCSS = require('gulp-csso');
+
+// HTML 相关依赖
 var pug = require('gulp-pug');
+
+//JavaScript 相关依赖
+var concat = require('gulp-concat');
+var sourcemaps = require('gulp-sourcemaps');
 
 // source and distribution folder
 var source = 'src/';
@@ -55,7 +63,15 @@ gulp.task('html', function () {
         .pipe(gulp.dest('dist'))
 });
 
+gulp.task('js', function(){
+    return gulp.src(source + 'scripts/*.js')
+      .pipe(sourcemaps.init())
+      .pipe(concat('app.min.js'))
+      .pipe(sourcemaps.write())
+      .pipe(gulp.dest(dest + 'js'))
+  });
+
 // default task
-gulp.task('default', ['html', 'sass'], function () {
+gulp.task('default', ['html', 'sass', 'js'], function () {
     gulp.watch(scss.watch, ['sass']);
 });
