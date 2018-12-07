@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var minifyCSS = require('gulp-csso');
 var pug = require('gulp-pug');
 
 // source and distribution folder
@@ -44,6 +45,7 @@ gulp.task('fonts', function () {
 gulp.task('sass', ['fonts'], function () {
     return gulp.src(scss.in)
         .pipe(sass(scss.sassOpts))
+        .pipe(minifyCSS())
         .pipe(gulp.dest(scss.out));
 });
 
